@@ -1,48 +1,26 @@
-.wrapper {
-  --search-border-radius: 92px;
-  --search-height: 46px;
-  --search-top-space: 9px;
-  --search-button-width: 52px;
-
-  width: 100%;
-  height: var(--default-layout-header-height, 60px);
-  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
-  display: flex;
-  justify-content: center;
-}
-
-.inner {
-  height: 100%;
-  width: var(--default-layout-width, 1150px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--default-layout-horizontal-space);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
+.search,
+.search-result {
+  width: 361px;
 }
 
 .search {
   position: relative;
   height: var(--search-height);
-  width: 361px;
+  padding-left: 16px;
+  display: flex;
   background-color: rgba(22, 24, 35, 0.06);
   border-radius: var(--search-border-radius);
-  display: flex;
-  padding-left: 16px;
   border: 1.5px solid transparent;
 
   input {
-    font-size: 1.6rem;
-    color: var(--black);
-    background-color: transparent;
-    padding: 12px 0;
-    height: 100%;
     flex: 1;
+    height: 100%;
+    padding-right: 40px;
+    color: var(--black);
+    font-size: 1.6rem;
     caret-color: var(--primary);
+    background-color: transparent;
+    font-family: var(--font-family);
   }
 
   input:not(:placeholder-shown) ~ .search-btn {
@@ -51,17 +29,24 @@
 
   &::after {
     content: '';
-    top: var(--search-top-space);
+    position: absolute;
+    top: var(--search-top-spacer);
     right: var(--search-button-width);
     width: 1px;
-    position: absolute;
-    height: calc(var(--search-height) - var(--search-top-space) * 2);
+    height: calc(var(--search-height) - var(--search-top-spacer) * 2);
     background-color: rgba(22, 24, 35, 0.12);
   }
 
   &:focus-within {
     border-color: rgba(22, 24, 35, 0.2);
   }
+}
+
+.search-title {
+  padding: 5px 12px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(22, 24, 35, 0.5);
 }
 
 .clear,
@@ -73,7 +58,23 @@
   color: rgba(22, 24, 35, 0.34);
 }
 
+.loading {
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: translateY(-50%) rotate(0);
+  }
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
 .search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: var(--search-button-width);
   height: 100%;
   border-top-right-radius: var(--search-border-radius);
@@ -89,12 +90,4 @@
   &:active {
     background-color: rgba(22, 24, 35, 0.06);
   }
-}
-
-.more-btn {
-  font-size: 2rem;
-  padding: 4px 8px;
-  margin-left: 28px;
-  background-color: transparent;
-  cursor: pointer;
 }
