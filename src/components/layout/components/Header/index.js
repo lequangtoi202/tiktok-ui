@@ -13,7 +13,6 @@ import {
   faEarthAsia,
   faCircleQuestion,
   faKeyboard,
-  faCloudUpload,
   faUser,
   faCoins,
   faGear,
@@ -24,6 +23,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { AccountItem } from '~/components/layout/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import { useEffect, useState } from 'react';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -139,7 +140,17 @@ function Header() {
             <>
               <Tippy delay={[0, 200]} offset={[12, 8]} content="upload video" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <UploadIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 200]} offset={[12, 8]} content="message" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 200]} offset={[12, 8]} content="inbox" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <InboxIcon />
                 </button>
               </Tippy>
             </>
@@ -151,7 +162,7 @@ function Header() {
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
+              <Image
                 src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/d1e73264acf1a0c4a407a99126a202b3~c5_100x100.jpeg?x-expires=1684418400&x-signature=oVHMz%2BQccID7%2FRbmGx9VwZdn1DM%3D"
                 className={cx('user-avatar')}
                 alt="Nguyễn Văn A"
